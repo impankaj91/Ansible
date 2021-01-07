@@ -1,0 +1,13 @@
+--- #creating users using playbook
+- hosts: demo
+  user: ansible
+  become: yes
+  connection: ssh
+  tasks:
+          - name: USERS ARE CREATING ON ANSIBLE CLIENTS
+            user: name='{{item}}' state=present
+            with_items:
+                    - Pankaj
+                    - Rahul
+                    - Vikash
+~

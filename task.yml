@@ -1,0 +1,12 @@
+- hosts: demo
+  user: ansible
+  become: yes
+  connection: ssh
+  gather_facts: yes
+  tasks:
+        - name: INSTALL HTTPD ON ANSIBLE CLIENT
+          action: yum name=httpd state=installed
+          action: service name=httpd state=restarted
+        - name: create a directory
+          command: mkdir test
+
