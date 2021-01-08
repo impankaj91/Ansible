@@ -1,0 +1,17 @@
+--- #Installing Webserver on ansible client and create a demo website.
+- hosts: demo
+  user: ansible
+  become: yes
+  connection: ssh
+  tasks:
+          - name: INSTALLING WEBSERVER ON ANSIBLE-CLIENTS..
+            action: yum name=httpd state=installed
+            notify: restart httpd
+          - name: CREATING WEBPAGE FOR SERVER
+            action: copy src=/home/ansible/index.html dest=/var/www/html
+          - name: ALLOW FIREWALL TO 80 PORT
+            action: firewalld port=80/tcp zone=public state=enabled
+  handlers:
+          - name: restart httpd
+            action: service name=httpd state=restarted
+~
